@@ -1,0 +1,11 @@
+upstream jenkins{
+        server 52.14.119.50:8080;
+}
+server{
+        listen 80 default_server;
+        location / {
+                proxy_pass http://jenkins;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+        }
+}
